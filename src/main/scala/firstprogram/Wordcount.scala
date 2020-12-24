@@ -20,6 +20,7 @@ object Wordcount  {
         /* reduce */
         var counts = map.reduceByKey(_ + _)
  
+        
         /* print */
         counts.collect().foreach(println)
  
