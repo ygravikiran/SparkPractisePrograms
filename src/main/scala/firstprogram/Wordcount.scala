@@ -4,6 +4,7 @@ import org.apache.spark.SparkContext
 import org.apache.spark.SparkConf
 import org.apache.spark.SparkContext
 import org.apache.spark.SparkConf
+import org.apache.spark.sql.SparkSession
  
 object Wordcount  {
     def main(args: Array[String]) {
@@ -13,6 +14,10 @@ object Wordcount  {
  
         /* spark context*/
         val sc = new SparkContext(conf)
+        
+        val ss = SparkSession.builder().appName("Name").getOrCreate()
+       val xx= ss.read.format("csv").csv("./src/main/resources/input.txt")
+        
  
         /* map */
         var map = sc.textFile("./src/main/resources/input.txt").flatMap(line => line.split(" ")).map(word => (word,1))
